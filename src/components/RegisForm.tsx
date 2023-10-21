@@ -1,7 +1,10 @@
 import React from "react";
 import { Form, Button, ButtonToolbar, Schema, Stack } from "rsuite";
 
-import "./App.css";
+export type TFormRef = {
+  checkForField: (str: string, cb: (v: unknown) => void) => void;
+  check: () => void;
+};
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -39,12 +42,7 @@ const TextField = React.forwardRef((props: any, ref: any) => {
   );
 });
 
-type TFormRef = {
-  check: () => void;
-  checkForField: (str: string, cb: (v: unknown) => void) => void;
-};
-
-function App() {
+export default function RegisForm() {
   const formRef = React.useRef<TFormRef>();
   const [formValue, setFormValue] = React.useState({
     name: "",
@@ -102,5 +100,3 @@ function App() {
     </React.Fragment>
   );
 }
-
-export default App;
