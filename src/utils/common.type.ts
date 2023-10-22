@@ -4,4 +4,8 @@ export type TFCProps = {
   children: ReactNode;
 };
 
-export type TState = Record<string, any>
+export type TRecordState = Record<string, any>
+
+export type TChildComponent = {
+  callback: (data: TRecordState) => void
+}
