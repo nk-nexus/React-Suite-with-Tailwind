@@ -1,4 +1,4 @@
-import { AuthProvider, AuthContext } from "@contexts/auth";
+import { AuthProvider, AuthContext } from "@contexts/useAuthContext";
 import HeaderBar from "@layouts/header-bar";
 import { TFCProps } from "@utils/common.type";
 import { SIGN_TIME } from "@utils/constants";

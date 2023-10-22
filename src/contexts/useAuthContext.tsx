@@ -11,7 +11,6 @@ export type TAuthContext = {
 export const AuthContext = React.createContext<TAuthContext | null>(null);
 
 export const AuthProvider: FC<TFCProps> = ({ children }) => {
-  
   const loadUser = () => {
     const user = localStorage.getItem("user");
     if (user) {
@@ -21,18 +20,18 @@ export const AuthProvider: FC<TFCProps> = ({ children }) => {
     }
   };
 
-  let user = loadUser()
+  let user = loadUser();
 
-  const isAuth = !!user?.phoneNo
+  const isAuth = !!user?.phoneNo;
 
   const login = (value: TRecordState) => {
     localStorage.setItem("user", JSON.stringify(value));
-    user = value
+    user = value;
   };
 
   const logout = () => {
     localStorage.removeItem("user");
-    user = null
+    user = null;
   };
 
   const data = { user, isAuth, login, logout };

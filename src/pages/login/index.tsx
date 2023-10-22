@@ -1,5 +1,5 @@
 import { RegisterForm } from "@components/molecules/register-form";
-import { AuthContext } from "@contexts/auth";
+import { AuthContext } from "@contexts/useAuthContext";
 import { TRecordState } from "@utils/common.type";
 import { SIGN_TIME } from "@utils/constants";
 import { useContext } from "react";
