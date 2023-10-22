@@ -1,12 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './App.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
 
 import "rsuite/dist/rsuite-no-reset.min.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+import router from "./routes"
+import "./index.css";
+import { AuthProvider } from "@contexts/auth";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    {/* Provide Auth to Checking Auth Context */}
+    <AuthProvider>
+      {/* Every Routes Place Here */}
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </React.StrictMode>
+);
+ 
