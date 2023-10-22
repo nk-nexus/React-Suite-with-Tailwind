@@ -27,11 +27,12 @@ export const AuthProvider: FC<TFCProps> = ({ children }) => {
 
   const login = (value: TRecordState) => {
     localStorage.setItem("user", JSON.stringify(value));
-    user = loadUser()
+    user = value
   };
 
   const logout = () => {
     localStorage.removeItem("user");
+    user = null
   };
 
   const data = { user, isAuth, login, logout };

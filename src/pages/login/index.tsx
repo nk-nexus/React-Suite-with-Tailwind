@@ -12,8 +12,8 @@ function LoginPage() {
     // The Auth required a little bit of time to process.
     setTimeout(() => {
       auth?.login(value);
-    }, 300) // 300 ms is pretty fast to wait for
-    
+    }, 1000)
+
     return navigate("/");
   };
 
