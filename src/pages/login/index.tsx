@@ -1,6 +1,7 @@
 import { RegisterForm } from "@components/molecules/register-form";
 import { AuthContext } from "@contexts/auth";
 import { TRecordState } from "@utils/common.type";
+import { SIGN_TIME } from "@utils/constants";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +13,7 @@ function LoginPage() {
     // The Auth required a little bit of time to process.
     setTimeout(() => {
       auth?.login(value);
-    }, 1000)
+    }, SIGN_TIME)
 
     return navigate("/");
   };

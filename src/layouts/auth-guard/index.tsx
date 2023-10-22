@@ -1,6 +1,7 @@
 import { AuthProvider, AuthContext } from "@contexts/auth";
 import HeaderBar from "@layouts/header-bar";
 import { TFCProps } from "@utils/common.type";
+import { SIGN_TIME } from "@utils/constants";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "rsuite";
@@ -25,7 +26,7 @@ const AuthLayout: React.FC<TFCProps> = ({ children }) => {
     // Set timeout for Logout.
     setTimeout(() => {
       auth?.logout();
-    }, 500);
+    }, SIGN_TIME);
     // Navigate to Login Page
     return navigate("/login");
   };
