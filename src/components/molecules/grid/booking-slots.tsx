@@ -30,7 +30,7 @@ export const GridBookingSlot = () => {
         // Display Booking Slots
         user?.users.map((item) => {
           if (item.signAt) {
-            return item?.isAdmin ? (
+            return item?.isAdmin || item?.isOwner ? (
               <CardBooked key={item.id} user={item} onSignOut={handleSignOut} />
             ) : (
               <CardReadonly key={item.id} user={item} />

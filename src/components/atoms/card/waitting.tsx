@@ -7,7 +7,7 @@ import { TCardWaitting } from ".";
 import { useUser } from "@contexts/users";
 
 export const CardWaitting = ({ onSignIn, id, isAdmin }: TCardWaitting) => {
-  const user = useUser()
+  const user = useUser();
   const [openModal, setOpenModal] = useState(false);
 
   const handleSignIn = () => {
@@ -29,8 +29,9 @@ export const CardWaitting = ({ onSignIn, id, isAdmin }: TCardWaitting) => {
       firstname: data.firstname,
       lastname: data.lastname,
       phoneNo: data.phoneNo,
+      isAdmin: data.isAdmin,
       id: data.id,
-    })
+    });
   };
 
   return (
@@ -43,7 +44,9 @@ export const CardWaitting = ({ onSignIn, id, isAdmin }: TCardWaitting) => {
           <strong>Sign in</strong>
         </Button>
       </ButtonToolbar>
-      <SignInModal props={{ id, open: openModal, handleClose, handleSubmit }} />
+      <SignInModal
+        props={{ id, open: openModal, isAdmin, handleClose, handleSubmit }}
+      />
     </div>
   );
 };

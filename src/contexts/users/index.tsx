@@ -12,6 +12,7 @@ export type TUser = {
   phoneNo: string;
   signAt?: Date;
   isAdmin?: boolean;
+  isOwner?: boolean;
 };
 
 export type TUserContext = {
@@ -60,7 +61,7 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
         if (item.id === user.id) {
           return {
             ...user,
-            isAdmin: true,
+            isOwner: true,
             signAt: new Date(),
           };
         }

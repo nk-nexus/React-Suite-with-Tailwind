@@ -11,10 +11,10 @@ export type TSignInModal = {
 };
 
 export const SignInModal = ({
-  props: { id, open, handleClose, handleSubmit },
-}: AppComponentProps<TSignInModal & { id: number }>) => {
+  props: { id, open, isAdmin, handleClose, handleSubmit },
+}: AppComponentProps<TSignInModal & { id: number; isAdmin: boolean }>) => {
   const handleFormSubmit = (data: TRecordState) => {
-    handleSubmit({ ...data, id });
+    handleSubmit({ ...data, id, isAdmin });
   };
   return (
     <Modal
