@@ -6,12 +6,13 @@ export * from "./waitting";
 
 export type TCardBooking = {
   user: TUser;
-  onPress: (user: TUser) => void;
+  onSignOut: (user: TUser) => void;
   isAdmin?: boolean;
 };
 
 export type TCardWaitting = {
-  onPress: () => void
-}
+  id: number;
+  onSignIn: (id: number) => void;
+};
 
-export type TCardReadonly = Omit<TCardBooking, "onPress">;
+export type TCardReadonly = Omit<TCardBooking, "onSignOut">;

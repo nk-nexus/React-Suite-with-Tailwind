@@ -1,5 +1,5 @@
 import { AppProviderProps , TRecordState } from "@utils/common.type";
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 
 export type TAuthContext = {
   user: TRecordState | null;
@@ -37,4 +37,12 @@ export const AuthProvider: FC<AppProviderProps > = ({ children }) => {
   const data = { user, isAuth, login, logout };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = (): TAuthContext => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within a UserProvider');
+  }
+  return context;
 };
