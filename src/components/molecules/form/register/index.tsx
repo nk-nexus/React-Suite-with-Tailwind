@@ -4,7 +4,7 @@ import { Fragment, useRef, useState } from "react";
 import { Button, ButtonToolbar, Form, FormInstance, Stack } from "rsuite";
 import { model } from "./schema";
 
-const RegisterForm = ({ callback }: TChildComponent) => {
+export const RegisterForm = ({ callback }: TChildComponent) => {
   const formRef = useRef<FormInstance<TRecordState>>(null);
   const [formValue, setFormValue] = useState<TRecordState>({
     firstname: "",
@@ -72,5 +72,3 @@ const RegisterForm = ({ callback }: TChildComponent) => {
     </Fragment>
   );
 };
-
-export default RegisterForm;

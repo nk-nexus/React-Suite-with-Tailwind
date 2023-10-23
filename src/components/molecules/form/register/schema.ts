@@ -1,4 +1,4 @@
-import { TUser } from "@contexts/useUserContext";
+import { TUser } from "@contexts/users";
 import { Schema } from "rsuite";
 
 export type TLoginFormRef = {

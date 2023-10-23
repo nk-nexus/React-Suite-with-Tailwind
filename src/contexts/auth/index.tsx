@@ -1,4 +1,4 @@
-import { TFCProps, TRecordState } from "@utils/common.type";
+import { AppProviderProps , TRecordState } from "@utils/common.type";
 import React, { FC } from "react";
 
 export type TAuthContext = {
@@ -10,7 +10,7 @@ export type TAuthContext = {
 
 export const AuthContext = React.createContext<TAuthContext | null>(null);
 
-export const AuthProvider: FC<TFCProps> = ({ children }) => {
+export const AuthProvider: FC<AppProviderProps > = ({ children }) => {
   const loadUser = () => {
     const user = localStorage.getItem("user");
     if (user) {

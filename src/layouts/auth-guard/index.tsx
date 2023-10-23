@@ -1,6 +1,6 @@
-import { AuthProvider, AuthContext } from "@contexts/useAuthContext";
+import { AuthProvider, AuthContext } from "@contexts/auth";
 import HeaderBar from "@layouts/header-bar";
-import { TFCProps } from "@utils/common.type";
+import { AppProviderProps  } from "@utils/common.type";
 import { SIGN_TIME } from "@utils/constants";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import { Container } from "rsuite";
  * Use this Layout for wrapped components
  * or pages that required authentication
  */
-const AuthLayout: React.FC<TFCProps> = ({ children }) => {
+const AuthLayout: React.FC<AppProviderProps > = ({ children }) => {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 

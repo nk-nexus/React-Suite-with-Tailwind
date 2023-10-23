@@ -1,9 +1,4 @@
-export type TUser = {
-  firstname: string;
-  lastname: string;
-  phoneNo: string;
-  signAt?: Date;
-};
+import { TUser } from "@contexts/users";
 
 export const users: TUser[] = [
   {

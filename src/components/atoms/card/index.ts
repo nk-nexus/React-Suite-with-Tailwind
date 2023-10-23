@@ -1,11 +1,17 @@
-import { TUser } from "@contexts/useUserContext";
+import { TUser } from "@contexts/users";
 
 export * from "./booked";
+export * from "./readonly";
 export * from "./waitting";
 
 export type TCardBooking = {
   user: TUser;
-  onPress?: () => void
+  onPress: (user: TUser) => void;
+  isAdmin?: boolean;
 };
 
-export type TOnPressCardButton = Omit<TCardBooking, 'user'>
+export type TCardWaitting = {
+  onPress: () => void
+}
+
+export type TCardReadonly = Omit<TCardBooking, "onPress">;

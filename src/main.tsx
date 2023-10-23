@@ -6,7 +6,7 @@ import "rsuite/dist/rsuite-no-reset.min.css";
 
 import router from "./routes"
 import "./index.css";
-import { AuthProvider } from "@contexts/useAuthContext";
+import { AuthProvider } from "@contexts/auth";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

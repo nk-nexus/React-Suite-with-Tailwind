@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export type TFCProps = {
+export type AppProviderProps  = {
   children: ReactNode;
 };
 

@@ -1,4 +1,4 @@
-import { TChildComponent, TFCProps } from "@utils/common.type";
+import { TChildComponent, AppProviderProps  } from "@utils/common.type";
 import HomeIcon from "@rsuite/icons/legacy/Home";
 import CogIcon from "@rsuite/icons/legacy/Cog";
 import SignOut from "@rsuite/icons/legacy/SignOut";
@@ -6,7 +6,7 @@ import User from "@rsuite/icons/legacy/User";
 import { Nav, Navbar  } from "rsuite";
 import useBreakpoint from "@hooks/useBreakPoint";
 
-const HeaderBar: React.FC<TFCProps & TChildComponent> = ({
+const HeaderBar: React.FC<AppProviderProps  & TChildComponent> = ({
   children,
   callback,
 }) => {
