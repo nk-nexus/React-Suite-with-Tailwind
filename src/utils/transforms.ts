@@ -16,7 +16,7 @@ export function censorPhoneNo(phoneNo: string) {
  * @param date sign time
  * @returns date format {DD MMM YYYY HH:mm}
  */
-export function signAtFormat(date: Date) {
+export function signAtFormat(date?: Date) {
   const isValid = date instanceof Date && !isNaN(date.getTime())
   if (!isValid) {
     return "Invalid Date"

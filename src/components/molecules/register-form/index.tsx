@@ -1,12 +1,11 @@
 import { TextField } from "@components/atoms/text-field";
-import { User } from "@contexts/users";
 import { TChildComponent, TRecordState } from "@utils/common.type";
 import { Fragment, useRef, useState } from "react";
 import { Button, ButtonToolbar, Form, FormInstance, Stack } from "rsuite";
 import { model } from "./schema";
 
-export const RegisterForm = ({ callback }: TChildComponent) => {
-  const formRef = useRef<FormInstance<User>>(null);
+const RegisterForm = ({ callback }: TChildComponent) => {
+  const formRef = useRef<FormInstance<TRecordState>>(null);
   const [formValue, setFormValue] = useState<TRecordState>({
     firstname: "",
     lastname: "",
@@ -73,3 +72,5 @@ export const RegisterForm = ({ callback }: TChildComponent) => {
     </Fragment>
   );
 };
+
+export default RegisterForm;

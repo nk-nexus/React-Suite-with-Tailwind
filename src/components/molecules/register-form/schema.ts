@@ -1,5 +1,5 @@
+import { TUser } from "@contexts/useUserContext";
 import { Schema } from "rsuite";
-import { User } from "@contexts/users";
 
 export type TLoginFormRef = {
   checkForField: (str: string, cb: (val: unknown) => void) => void;
@@ -8,7 +8,7 @@ export type TLoginFormRef = {
 
 const { StringType } = Schema.Types;
 
-export const model = Schema.Model<User>({
+export const model = Schema.Model<TUser>({
   firstname: StringType().isRequired("This field is required."),
   lastname: StringType().isRequired("This field is required."),
   phoneNo: StringType()

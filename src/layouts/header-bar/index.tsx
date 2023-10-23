@@ -18,7 +18,7 @@ const HeaderBar: React.FC<TFCProps & TChildComponent> = ({
   
   return (
     <>
-      <Navbar className="fixed top-0 right-0 left-0 w-screen h-50 bg-slate-100">
+      <Navbar className="fixed top-0 right-0 left-0 w-screen h-50 bg-slate-100 z-max">
         <Navbar.Brand href="/" className="text-2xl font-extrabold p-3">
           Logo
         </Navbar.Brand>
