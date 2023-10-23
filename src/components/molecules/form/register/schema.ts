@@ -8,7 +8,7 @@ export type TLoginFormRef = {
 
 const { StringType } = Schema.Types;
 
-export const model = Schema.Model<TUser>({
+export const model = Schema.Model<Omit<TUser, 'id'>>({
   firstname: StringType().isRequired("This field is required."),
   lastname: StringType().isRequired("This field is required."),
   phoneNo: StringType()

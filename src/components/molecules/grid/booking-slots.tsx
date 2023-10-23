@@ -7,7 +7,7 @@ export const GridBookingSlot = () => {
   const user = useUser();
 
   const handleSignOut = (data: TUser) => {
-    user.signOut(data)
+    user.signOut(data);
   };
 
   const handleSignIn = (id: number) => {
@@ -17,10 +17,10 @@ export const GridBookingSlot = () => {
         firstname,
         lastname,
         phoneNo,
-        id
+        id,
       });
     } else {
-      throw new Error('Booking fail, Not found user')
+      throw new Error("Booking fail, Not found user");
     }
   };
 
@@ -29,19 +29,20 @@ export const GridBookingSlot = () => {
       {
         // Display Booking Slots
         user?.users.map((item) => {
-          if (item?.isAdmin) {
-            return (
-              <CardBooked
-                key={item.id}
-                user={item}
-                onSignOut={handleSignOut}
-              />
+          if (item.signAt) {
+            return item?.isAdmin ? (
+              <CardBooked key={item.id} user={item} onSignOut={handleSignOut} />
+            ) : (
+              <CardReadonly key={item.id} user={item} />
             );
           }
-          return item?.id && item.signAt ? (
-            <CardReadonly key={item.id} user={item} />
-          ) : (
-            <CardWaitting key={item.id} id={item.id} onSignIn={handleSignIn} />
+          return (
+            <CardWaitting
+              key={item.id}
+              id={item.id}
+              isAdmin={!!item?.isAdmin}
+              onSignIn={handleSignIn}
+            />
           );
         })
       }

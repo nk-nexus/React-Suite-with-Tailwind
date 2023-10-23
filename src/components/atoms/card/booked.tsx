@@ -13,7 +13,7 @@ export const CardBooked = ({
 }: TCardBooking) => {
   const { firstname, lastname, phoneNo, signAt } = user
   return (
-    <div className="group hover:bg-red-50 rounded-lg shadow-sm bg-zinc-50 opacity-1 p-4">
+    <div className="w-48 group hover:bg-red-50 rounded-lg shadow-sm bg-zinc-50 opacity-1 p-4">
       <div className="group-hover:hidden flex flex-col justify-center items-center py-4">
         <PhoneIcon color={SLATE_400} className=" w-10 h-10 my-2" />
         <h4 className="font-extrabold text-base text-stone-800 py-1">

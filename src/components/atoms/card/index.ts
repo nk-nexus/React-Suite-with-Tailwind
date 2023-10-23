@@ -12,6 +12,7 @@ export type TCardBooking = {
 
 export type TCardWaitting = {
   id: number;
+  isAdmin: boolean;
   onSignIn: (id: number) => void;
 };
 

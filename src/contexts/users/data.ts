@@ -1,5 +1,7 @@
 import { TUser } from "@contexts/users";
 
+export const adminNo = ['0934000779', '0934000780', '0934000781']
+
 export const users: TUser[] = [
   {
     id: 1,

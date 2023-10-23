@@ -5,6 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    minWidth: {
+      '180': '180px',
+    },
     extend: {
       zIndex: {
         'max': '9999',
