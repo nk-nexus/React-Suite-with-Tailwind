@@ -1,9 +1,16 @@
-import { censorPhoneNo, signAtFormat } from "./transforms";
+import { censorPhoneNo, formatPhoneNo, signAtFormat } from "./transforms";
 
 describe("censorPhoneNo", () => {
   it("should be censor phone number", () => {
     const result = censorPhoneNo("0934000780");
     expect(result).toBe("093-xxx-0780");
+  });
+});
+
+describe("formatPhoneNo", () => {
+  it("should be format phone number", () => {
+    const result = formatPhoneNo("0934000780");
+    expect(result).toBe("093-400-0780");
   });
 });
 

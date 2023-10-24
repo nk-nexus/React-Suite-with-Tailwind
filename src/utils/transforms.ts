@@ -13,6 +13,15 @@ export function censorPhoneNo(phoneNo: string) {
 
 /**
  * 
+ * @param phoneNo string phone number 10 digit
+ * @returns format phone number e.g. 0123456789 => 012-345-6789
+ */
+export function formatPhoneNo(phoneNo: string) {
+  return phoneNo.replace(/^(\d{3})(\d{3})(\d{4})$/, '$1-$2-$3');
+}
+
+/**
+ * 
  * @param date sign time
  * @returns date format {DD MMM YYYY HH:mm}
  */
