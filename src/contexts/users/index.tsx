@@ -1,6 +1,6 @@
 import { AppProviderProps } from "@utils/common.type";
 import React, { FC, useContext, useState } from "react";
-import { adminNo, users as mockUsers } from "./data";
+import { adminNo, users as mockUsers, usersHistory } from "./data";
 import { useAuth } from "@contexts/auth";
 
 export * from "./data";
@@ -13,14 +13,22 @@ export type TUser = {
   signAt?: Date;
   isAdmin?: boolean;
   isOwner?: boolean;
+  isActive?: boolean;
 };
 
 export type TUserContext = {
   users: TUser[];
+  paginate: {
+    data: TUser[];
+    total: number
+    page: number
+    limit: number
+  }
   currentActive: number;
   availableSlots: number;
   signIn: (user: TUser) => void;
   signOut: (user: TUser) => void;
+  setPagination: (page: number) => void;
 };
 
 export const UserContext = React.createContext<TUserContext | undefined>(
@@ -29,6 +37,12 @@ export const UserContext = React.createContext<TUserContext | undefined>(
 
 export const UserProvider: FC<AppProviderProps> = ({ children }) => {
   const auth = useAuth();
+  const [paginate] = useState({
+    data: usersHistory,
+    total: usersHistory.length,
+    limit: 10,
+    page: 1,
+  })
   const [users, setUsers] = useState(
     adminNo.includes(auth.user?.["phoneNo"])
       ? mockUsers.map((i) => ({ ...i, isAdmin: true }))
@@ -37,10 +51,12 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
 
   const data: TUserContext = {
     users,
+    paginate,
     currentActive: 0,
     availableSlots: 0,
     signIn: () => {},
     signOut: () => {},
+    setPagination: () => {},
   };
 
   const count = (type: "Current" | "Slots") => {
@@ -48,6 +64,13 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
       return type === "Current" ? !!user.signAt : !user.signAt;
     }).length;
   };
+
+  const setCurrentData = (page: number, limit: number) => {
+    const startNumber = (page - 1) * limit
+    const endPage = page * limit
+    
+    return usersHistory.slice(startNumber, endPage)
+  }
 
   const signIn = (user: TUser) => {
     const alreadyExist = users.find((item) => {
@@ -88,10 +111,16 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
     );
   };
 
+  const setPagination = (page: number) => {
+    data.paginate.data = setCurrentData(page, paginate.limit)
+  }
+
+  data.paginate.data = setCurrentData(paginate.page, paginate.limit)
   data.currentActive = count("Current");
   data.availableSlots = count("Slots");
   data.signIn = signIn;
   data.signOut = signOut;
+  data.setPagination = setPagination;
 
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };
