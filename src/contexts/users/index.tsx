@@ -29,6 +29,7 @@ export type TUserContext = {
   signIn: (user: TUser) => void;
   signOut: (user: TUser) => void;
   setPagination: (page: number) => void;
+  sortData: (c: any, t: any) => void;
 };
 
 export const UserContext = React.createContext<TUserContext | undefined>(
@@ -37,17 +38,26 @@ export const UserContext = React.createContext<TUserContext | undefined>(
 
 export const UserProvider: FC<AppProviderProps> = ({ children }) => {
   const auth = useAuth();
+
+  const isAdmin = adminNo.includes(auth.user?.["phoneNo"]);
+  const userSortDt = () => {
+    let data = isAdmin
+      ? mockUsers.map((i) => ({ ...i, isAdmin: true }))
+      : mockUsers;
+    return data.sort((a, b) => {
+      const aVal = a.signAt?.valueOf() || 0;
+      const bVal = b.signAt?.valueOf() || 0;
+      return bVal - aVal;
+    });
+  };
+
   const [paginate] = useState({
     data: usersHistory,
     total: usersHistory.length,
     limit: 10,
     page: 1,
   });
-  const [users, setUsers] = useState(
-    adminNo.includes(auth.user?.["phoneNo"])
-      ? mockUsers.map((i) => ({ ...i, isAdmin: true }))
-      : mockUsers
-  );
+  const [users, setUsers] = useState(userSortDt);
 
   const data: TUserContext = {
     users,
@@ -57,6 +67,7 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
     signIn: () => {},
     signOut: () => {},
     setPagination: () => {},
+    sortData: (c: any, t: any) => {},
   };
 
   const count = (type: "Current" | "Slots") => {
@@ -65,13 +76,37 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
     }).length;
   };
 
-  const setCurrentData = (page: number, limit: number) => {
+  const setCurrentData = (page: number, limit: number, sortData?: TUser[]) => {
     const startNumber = (page - 1) * limit;
     const endPage = page * limit;
-    const isAdmin = adminNo.includes(auth.user?.["phoneNo"]);
-    return usersHistory
+    return (sortData ? sortData : usersHistory)
       .map((item) => (isAdmin ? { ...item, isAdmin } : item))
       .slice(startNumber, endPage);
+  };
+
+  const sortData = (sortColumn: any, sortType: any) => {
+    const sortData = usersHistory.sort((a: any, b: any) => {
+      let x: any = a[sortColumn];
+      let y: any = b[sortColumn];
+      if (sortColumn === "signAt") {
+        return sortType === "asc"
+          ? x.valueOf() - y.valueOf()
+          : y.valueOf() - x.valueOf();
+      }
+      if (sortColumn === "id") {
+        return sortType === "asc" ? x - y : y - x;
+      }
+      return sortType === "asc" ? x.localeCompare(y) : y.localeCompare(x);
+    });
+    console.log({
+      page: paginate.page,
+      limit: paginate.limit
+    })
+    data.paginate.data = setCurrentData(
+      paginate.page,
+      paginate.limit,
+      sortData
+    );
   };
 
   const signIn = (user: TUser) => {
@@ -114,6 +149,7 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
   };
 
   const setPagination = (page: number) => {
+    data.paginate.page = page
     data.paginate.data = setCurrentData(page, paginate.limit);
   };
 
@@ -123,6 +159,7 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
   data.signIn = signIn;
   data.signOut = signOut;
   data.setPagination = setPagination;
+  data.sortData = sortData;
 
   return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
 };
