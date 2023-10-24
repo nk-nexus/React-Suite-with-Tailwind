@@ -20,10 +20,10 @@ export type TUserContext = {
   users: TUser[];
   paginate: {
     data: TUser[];
-    total: number
-    page: number
-    limit: number
-  }
+    total: number;
+    page: number;
+    limit: number;
+  };
   currentActive: number;
   availableSlots: number;
   signIn: (user: TUser) => void;
@@ -42,7 +42,7 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
     total: usersHistory.length,
     limit: 10,
     page: 1,
-  })
+  });
   const [users, setUsers] = useState(
     adminNo.includes(auth.user?.["phoneNo"])
       ? mockUsers.map((i) => ({ ...i, isAdmin: true }))
@@ -66,11 +66,13 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
   };
 
   const setCurrentData = (page: number, limit: number) => {
-    const startNumber = (page - 1) * limit
-    const endPage = page * limit
-    
-    return usersHistory.slice(startNumber, endPage)
-  }
+    const startNumber = (page - 1) * limit;
+    const endPage = page * limit;
+    const isAdmin = adminNo.includes(auth.user?.["phoneNo"]);
+    return usersHistory
+      .map((item) => (isAdmin ? { ...item, isAdmin } : item))
+      .slice(startNumber, endPage);
+  };
 
   const signIn = (user: TUser) => {
     const alreadyExist = users.find((item) => {
@@ -112,10 +114,10 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
   };
 
   const setPagination = (page: number) => {
-    data.paginate.data = setCurrentData(page, paginate.limit)
-  }
+    data.paginate.data = setCurrentData(page, paginate.limit);
+  };
 
-  data.paginate.data = setCurrentData(paginate.page, paginate.limit)
+  data.paginate.data = setCurrentData(paginate.page, paginate.limit);
   data.currentActive = count("Current");
   data.availableSlots = count("Slots");
   data.signIn = signIn;

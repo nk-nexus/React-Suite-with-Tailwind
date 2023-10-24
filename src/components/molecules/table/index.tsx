@@ -1,5 +1,5 @@
 import { useUser } from "@contexts/users";
-import { censorPhoneNo, signAtFormat } from "@utils/transforms";
+import { censorPhoneNo, formatPhoneNo, signAtFormat } from "@utils/transforms";
 import { useState } from "react";
 import { Pagination, Table } from "rsuite";
 
@@ -18,7 +18,9 @@ export const UserTable = () => {
     .map((item) => {
       return {
         ...item,
-        phoneNo: censorPhoneNo(item.phoneNo),
+        phoneNo: item.isAdmin
+          ? formatPhoneNo(item.phoneNo)
+          : censorPhoneNo(item.phoneNo),
         signAt: signAtFormat(item.signAt),
       };
     });
