@@ -1,4 +1,4 @@
-import { RegisterForm } from "@components/molecules/register-form";
+import { LoginForm } from "@components/molecules/form";
 import { AuthContext } from "@contexts/auth";
 import { TRecordState } from "@utils/common.type";
 import { SIGN_TIME } from "@utils/constants";
@@ -18,7 +18,7 @@ function LoginPage() {
     return navigate("/");
   };
 
-  return <RegisterForm callback={callback} />;
+  return <LoginForm callback={callback} />;
 }
 
 export default LoginPage;

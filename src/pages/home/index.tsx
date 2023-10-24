@@ -1,109 +1,17 @@
 import AuthLayout from "@layouts/auth-guard";
+import { UserProvider } from "@contexts/users";
+import { GridBookingSlot } from "@components/molecules/grid";
+import { SlotsHeading } from "@components/atoms/heading";
 
-function Home() {
-  console.log('Home Page')
+function HomePage() {
   return (
     <AuthLayout>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
-      <div  className="bg-red-50">Home Page</div>
+      <UserProvider>
+        <SlotsHeading />
+        <GridBookingSlot />
+      </UserProvider>
     </AuthLayout>
   );
-};
+}
 
-export default Home;
+export default HomePage;

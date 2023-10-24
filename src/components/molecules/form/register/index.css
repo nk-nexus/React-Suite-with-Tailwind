@@ -1,0 +1,9 @@
+.custom-button-width {
+  width: 223px;
+}
+
+@media screen and (min-width: 576px) {
+  .custom-button-width {
+    width: 300px;
+  }
+}
