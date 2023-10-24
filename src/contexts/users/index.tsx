@@ -40,15 +40,10 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
   const auth = useAuth();
 
   const isAdmin = adminNo.includes(auth.user?.["phoneNo"]);
-  const userSortDt = () => {
-    let data = isAdmin
+  const addIsAdmin = () => {
+    return isAdmin
       ? mockUsers.map((i) => ({ ...i, isAdmin: true }))
       : mockUsers;
-    return data.sort((a, b) => {
-      const aVal = a.signAt?.valueOf() || 0;
-      const bVal = b.signAt?.valueOf() || 0;
-      return bVal - aVal;
-    });
   };
 
   const [paginate] = useState({
@@ -57,7 +52,7 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
     limit: 10,
     page: 1,
   });
-  const [users, setUsers] = useState(userSortDt);
+  const [users, setUsers] = useState(addIsAdmin);
 
   const data: TUserContext = {
     users,
@@ -100,8 +95,8 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
     });
     console.log({
       page: paginate.page,
-      limit: paginate.limit
-    })
+      limit: paginate.limit,
+    });
     data.paginate.data = setCurrentData(
       paginate.page,
       paginate.limit,
@@ -149,7 +144,7 @@ export const UserProvider: FC<AppProviderProps> = ({ children }) => {
   };
 
   const setPagination = (page: number) => {
-    data.paginate.page = page
+    data.paginate.page = page;
     data.paginate.data = setCurrentData(page, paginate.limit);
   };
 
